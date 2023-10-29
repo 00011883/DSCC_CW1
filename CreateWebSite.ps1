@@ -1,1 +1,0 @@
-New-WebApplication -Site "Default Web Site" -Name GamesStore -PhysicalPath c:\inetpub\wwwroot\GamesStore_11883_Client -Force

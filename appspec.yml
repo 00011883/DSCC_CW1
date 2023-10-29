@@ -1,23 +1,10 @@
-# version: 0.0
-# os: windows
-# files:
-#   - source: \
-#     destination: C:\temp\WebApp\GamesStore_11883_Client
-
-# hooks:
-#   BeforeInstall:
-#     - location: .\StageArtifact.ps1
-#     - location: .\CreateWebSite.ps1
-
 version: 0.0
 os: windows
 files:
   - source: \
     destination: C:\temp\WebApp\GamesStore_11883_Client
 hooks:
+  BeforeInstall:
   ApplicationStop:
     - location: .\RemoveApp.ps1
-      timeout: 30
-  ApplicationStart:
     - location: .\InstallApp.ps1
-      timeout: 300
