@@ -5,6 +5,5 @@ files:
     destination: C:\temp\WebApp\GamesStore_11883_Client
 hooks:
   BeforeInstall:
-  ApplicationStop:
     - location: .\RemoveApp.ps1
     - location: .\InstallApp.ps1
