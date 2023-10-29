@@ -1,6 +1,6 @@
 Import-Module WebAdministration
 $iisAppPoolName = "webtest-app"
-$iisAppPoolDotNetVersion = "v6.0"
+$iisAppPoolDotNetVersion = "v4.0"
 $iisAppName = "webtest"
 $directoryPath = "C:\inetpub\wwwroot\webtest"
 
