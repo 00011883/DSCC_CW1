@@ -1,9 +1,0 @@
-version: 0.0
-os: windows
-files:
-  - source: \
-    destination: C:\temp\WebApp\GamesStore_11883_Client
-hooks:
-  BeforeInstall:
-    - location: .\RemoveApp.ps1
-    - location: .\InstallApp.ps1
