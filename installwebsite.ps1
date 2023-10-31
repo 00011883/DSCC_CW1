@@ -1,8 +1,8 @@
 Import-Module WebAdministration
-$iisAppPoolName = "games11883-app"
-$iisAppPoolDotNetVersion = "v4.0"
-$iisAppName = "games11883"
-$directoryPath = "C:\inetpub\wwwroot\games11883"
+$iisAppPoolName = "GamesStore_11883_Client-app"
+$iisAppPoolDotNetVersion = "v4.8"
+$iisAppName = "GamesStore_11883_Client"
+$directoryPath = "C:\inetpub\wwwroot\GamesStore_11883_Client"
 
 #stop the default web site so we can use port :80
 Stop-WebSite 'Default Web Site'

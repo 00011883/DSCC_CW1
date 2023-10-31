@@ -1,6 +1,6 @@
 Import-Module WebAdministration
-$iisAppPoolName = "games11883-app"
-$iisAppName = "games11883"
+$iisAppPoolName = "GamesStore_11883_Client-app"
+$iisAppName = "GamesStore_11883_Client"
 
 #navigate to the sites root
 cd IIS:\Sites\
