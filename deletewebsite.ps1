@@ -1,9 +1,9 @@
 Import-Module WebAdministration
-$iisAppPoolName = "GamesStore_11883_Client-app"
+$iisAppPoolName = "GamesStore_11883_ClientPool"
 $iisAppName = "GamesStore_11883_Client"
 
 #navigate to the sites root
-cd IIS:\Sites\
+Set-Location IIS:\Sites\
 
 #check if the site exists
 if (Test-Path $iisAppName -pathType container)
@@ -13,7 +13,7 @@ if (Test-Path $iisAppName -pathType container)
 }
 
 #navigate to the app pools root
-cd IIS:\AppPools\
+Set-Location IIS:\AppPools\
 
 #check if the app pool exists
 if (!(Test-Path $iisAppPoolName -pathType container))
