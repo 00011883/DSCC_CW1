@@ -1,1 +1,7 @@
-%SystemRoot%\sysnative\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File "%~dp0installwebsite.ps1"
+%SystemRoot%\sysnative\WindowsPowerShell\v1.0\powershell.exe -command "Set-ExecutionPolicy Unrestricted -Force"
+
+IF NOT EXIST c:\inetpub\wwwroot\webapp mkdir c:\inetpub\wwwroot\webapp
+
+cd c:\temp
+
+%SystemRoot%\sysnative\WindowsPowerShell\v1.0\powershell.exe -command ".\installwebsite.ps1"

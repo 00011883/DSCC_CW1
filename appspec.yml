@@ -1,12 +1,20 @@
 version: 0.0
 os: windows
 files:
-  - source: \GamesStore_11883_Client\*.*
-    destination: c:\inetpub\wwwroot\GamesStore_11883_Client
+  - source: \Build
+    destination: c:\inetpub\wwwroot\webapp
+  - source: \deletewebsite.ps1
+    destination: c:\temp
+  - source: \installwebsite.ps1
+    destination: c:\temp
+  - source: \deletewebsite.bat
+    destination: c:\temp
+  - source: \installwebsite.bat
+    destination: c:\temp
 hooks:
   BeforeInstall:
-    - location: \deletewebsite.ps1
+    - location: \deletewebsite.bat
       timeout: 180
   AfterInstall:
-    - location: \installwebsite.ps1
+    - location: \installwebsite.bat
       timeout: 180

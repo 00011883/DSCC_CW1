@@ -1,0 +1,65 @@
+﻿@model GamesStore_11883_Client.Models.Game
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+
+
+<div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            Description
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @{
+                string priceToDisplay = Model.Price == 0.00m ? "Free" : '$' + Model.Price.ToString();
+            }
+            @Html.DisplayFor(model => priceToDisplay)
+        </dd>
+
+
+        <dt>
+            Game Screen Image
+        </dt>
+
+        <dd>
+            <img src="@Html.DisplayFor(model => model.ImgUrl)" width="100%" />
+        </dd>
+
+        <dt>
+            Studio
+        </dt>
+
+        <dd>
+            <img src="@Html.DisplayFor(model => model.Author.PosterUrl)" width="200" />
+
+        </dd>
+
+    </dl>
+</div>
+
