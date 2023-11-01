@@ -29,18 +29,21 @@ namespace GamesStore_11883_Client.Controllers
             {
                 http.BaseAddress = new Uri(baseUrl);
                 http.DefaultRequestHeaders.Clear();
+                // Setup http headers
                 http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage res = await http.GetAsync("/api/Author");
 
                 if (res.IsSuccessStatusCode)
                 {
                     var data = res.Content.ReadAsStringAsync().Result;
+                    // Parse string into JSON format
                     Authors = JsonConvert.DeserializeObject<List<Author>>(data);
                 }
                 return Authors;
             }
         }
 
+        // Separate function to get author by ID for multiple usage DRY Principle
         public async Task<Author> GetById(int id)
         {
             Author Author = new Author();
@@ -48,12 +51,14 @@ namespace GamesStore_11883_Client.Controllers
             {
                 http.BaseAddress = new Uri(baseUrl);
                 http.DefaultRequestHeaders.Clear();
+                // Setup http headers
                 http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage res = await http.GetAsync($"/api/Author/{id}");
 
                 if (res.IsSuccessStatusCode)
                 {
                     var data = res.Content.ReadAsStringAsync().Result;
+                    // Parse string into JSON format
                     Author = JsonConvert.DeserializeObject<Author>(data);
                 }
                 return Author;
@@ -83,8 +88,9 @@ namespace GamesStore_11883_Client.Controllers
                 {
                     http.BaseAddress = new Uri(baseUrl);
                     http.DefaultRequestHeaders.Clear();
+                    // Setup http headers
                     http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
+                    // Parse string into JSON format
                     var content = new StringContent(JsonConvert.SerializeObject(author), Encoding.UTF8, "application/json");
                     HttpResponseMessage response = await http.PostAsync("/api/Author/", content);
                     if (response.IsSuccessStatusCode)
@@ -94,14 +100,14 @@ namespace GamesStore_11883_Client.Controllers
                     else
                     {
                         // Handle the error case
-                        ModelState.AddModelError(string.Empty, "Failed to create the author.");
+                        ModelState.AddModelError("AddAuthorFailure", "Failed to add the author.");
                         return View(author);
                     }
                 }
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError(string.Empty, "An error occurred while creating the author.");
+                ModelState.AddModelError("UnexpectedAuthorError", "An error occurred while adding the author.");
                 return View(author);
             }
         }
@@ -124,8 +130,9 @@ namespace GamesStore_11883_Client.Controllers
                 {
                     http.BaseAddress = new Uri(baseUrl);
                     http.DefaultRequestHeaders.Clear();
+                    // Setup http headers
                     http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
+                    // Parse string into JSON format
                     var content = new StringContent(JsonConvert.SerializeObject(author), Encoding.UTF8, "application/json");
                     HttpResponseMessage response = await http.PutAsync($"/api/Author/{id}", content);
                     if (response.IsSuccessStatusCode)
@@ -135,14 +142,14 @@ namespace GamesStore_11883_Client.Controllers
                     else
                     {
                         // Handle the error case
-                        ModelState.AddModelError(string.Empty, "Failed to update the author.");
+                        ModelState.AddModelError("UpdateAuthorFailure", "Failed to update the author.");
                         return View(author);
                     }
                 }
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError(string.Empty, "An error occurred while updating the author.");
+                ModelState.AddModelError("UnexpectedUpdateAuthorError", "An error occurred while updating the author.");
                 return View(author);
             }
         }
@@ -165,6 +172,7 @@ namespace GamesStore_11883_Client.Controllers
                 {
                     http.BaseAddress = new Uri(baseUrl);
                     http.DefaultRequestHeaders.Clear();
+                    // Setup http headers
                     http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     HttpResponseMessage response = await http.DeleteAsync($"/api/Author/{id}");
 
@@ -176,14 +184,14 @@ namespace GamesStore_11883_Client.Controllers
                     else
                     {
                         var errorMessage = "Failed to delete the author. Status code: " + response.StatusCode;
-                        ModelState.AddModelError(string.Empty, errorMessage);
+                        ModelState.AddModelError("DeleteAuthorFailure", errorMessage);
                         return View();
                     }
                 }
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError(string.Empty, "An error occurred while deleting the author.");
+                ModelState.AddModelError("UnexpectedDeleteAuthorError", "An error occurred while deleting the author.");
                 return View();
             }
         }
